@@ -20,15 +20,23 @@ export default class Header extends Component {
       <header data-testid="header-component">
         {user.name !== '' ? <p data-testid="header-user-name">{ user.name }</p>
           : <Loading />}
-        <Link to="/search" data-testid="link-to-search">
-          Search
-        </Link>
-        <Link to="/favorites" data-testid="link-to-favorites">
-          Favorites
-        </Link>
-        <Link to="/profile" data-testid="link-to-profile">
-          Profile
-        </Link>
+        <ul className="menu">
+          <li>
+            <Link to="/search" data-testid="link-to-search">
+              Search
+            </Link>
+          </li>
+          <li>
+            <Link to="/favorites" data-testid="link-to-favorites">
+              Favorites
+            </Link>
+          </li>
+          <li>
+            <Link to="/profile" data-testid="link-to-profile">
+              Profile
+            </Link>
+          </li>
+        </ul>
       </header>
     );
   }
