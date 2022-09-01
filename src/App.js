@@ -41,10 +41,7 @@ class App extends React.Component {
               <Header setLoading={ this.setLoading } />
               <Search />
             </Route>
-            <Route exact path="/album/:id">
-              <Header setLoading={ this.setLoading } />
-              <Album />
-            </Route>
+            <Route exact path="/album/:id" component={ Album } />
             <Route exact path="/favorites">
               <Header setLoading={ this.setLoading } />
               <Favorites />
