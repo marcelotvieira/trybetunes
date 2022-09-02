@@ -9,12 +9,22 @@ import Profile from './pages/Profile';
 import ProfileEdit from './pages/ProfileEdit';
 import Search from './pages/Search';
 import Header from './components/Header';
+import { getFavoriteSongs } from './services/favoriteSongsAPI';
 
 class App extends React.Component {
   state = {
     loggedIn: false,
     loading: false,
+    favoriteSongs: [],
   };
+
+  async componentDidMount() {
+    await this.setState({ loading: true });
+    this.setState({
+      favoriteSongs: await getFavoriteSongs(),
+      loading: false,
+    });
+  }
 
   loginIn = (bool) => {
     this.setState({ loggedIn: bool });
@@ -25,7 +35,7 @@ class App extends React.Component {
   };
 
   render() {
-    const { loggedIn, loading } = this.state;
+    const { loggedIn, loading, favoriteSongs } = this.state;
     if (loading) return <Loading />;
     return (
       <div className="App">
@@ -39,12 +49,16 @@ class App extends React.Component {
             </Route>
             <Route exact path="/search">
               <Header setLoading={ this.setLoading } />
-              <Search />
+              <Search favoriteSongs={ favoriteSongs } />
             </Route>
-            <Route exact path="/album/:id" component={ Album } />
+            <Route
+              exact
+              path="/album/:id"
+              component={ Album }
+            />
             <Route exact path="/favorites">
               <Header setLoading={ this.setLoading } />
-              <Favorites />
+              <Favorites favoriteSongs={ favoriteSongs } />
             </Route>
             <Route exact path="/profile">
               <Header setLoading={ this.setLoading } />
