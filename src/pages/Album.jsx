@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import getMusics from '../services/musicsAPI';
 import MusicCard from '../components/MusicCard';
+import Loading from '../components/Loading';
+import { getFavoriteSongs } from '../services/favoriteSongsAPI';
 
 export default class Album extends Component {
   state = {
@@ -10,42 +12,48 @@ export default class Album extends Component {
     tracks: [],
     artistName: '',
     collectionName: '',
+    isLoading: false,
+    favoriteSongs: [],
   };
 
   async componentDidMount() {
+    this.setState({ isLoading: true, favoriteSongs: await getFavoriteSongs()});
     const { match } = this.props;
     const { id } = match.params;
-<<<<<<< HEAD
     this.setState({ albumId: id });
     await this.fetchTracks();
     this.setState({ isLoading: false });
-=======
-    await this.setState({ albumId: id });
-    this.fetchTracks();
->>>>>>> parent of 7484e2f (req8)
   }
 
   fetchTracks = async () => {
     const { albumId } = this.state;
     const response = await getMusics(albumId);
-    const [artist] = response;
-    const { artistName, collectionName } = artist;
-    this.setState({ tracks: response, artistName, collectionName });
+    if (response.length > 0) {
+      const [artist] = response;
+      const { artistName, collectionName } = artist;
+      this.setState({
+        tracks: response.filter((track, index) => index !== 0 && track),
+        artistName,
+        collectionName });
+    }
   };
 
   render() {
-    const { tracks, artistName, collectionName } = this.state;
+    const { tracks, artistName, collectionName, isLoading, favoriteSongs } = this.state;
     const trackEls = tracks.map((track, index) => {
+      const { trackId: id } = track;
+      const isFavorite = favoriteSongs.some((trackItem) => trackItem.trackId === id);
       if (index === 0) return null;
       return (
         <div key={ index }>
           <MusicCard
+            isFavorite={ isFavorite }
             track={ track }
           />
         </div>
       );
     });
-
+    if (isLoading) return <Loading />;
     return (
       <div data-testid="page-album">
         <Header />
