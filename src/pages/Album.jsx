@@ -17,7 +17,7 @@ export default class Album extends Component {
   };
 
   async componentDidMount() {
-    this.setState({ isLoading: true, favoriteSongs: await getFavoriteSongs()});
+    this.setState({ isLoading: true, favoriteSongs: await getFavoriteSongs() });
     const { match } = this.props;
     const { id } = match.params;
     await this.setState({ albumId: id });
