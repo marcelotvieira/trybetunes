@@ -26,7 +26,10 @@ export default class MusicCard extends Component {
     const { track } = this.props;
     const { checked: isFavorite } = e.target;
     this.setState({ isFavorite, isLoading: true });
-    if (isFavorite) { await addSong(track); } else { await removeSong(track); }
+    if (isFavorite) {
+      await addSong(track);
+      this.setState({ favoriteSongs: await getFavoriteSongs() });
+    } else { await removeSong(track); }
     this.setState({ isLoading: false });
   };
 
