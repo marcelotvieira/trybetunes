@@ -20,7 +20,7 @@ export default class Album extends Component {
     this.setState({ isLoading: true, favoriteSongs: await getFavoriteSongs()});
     const { match } = this.props;
     const { id } = match.params;
-    await this.setState({ albumId: id });
+    this.setState({ albumId: id });
     await this.fetchTracks();
     this.setState({ isLoading: false });
   }
