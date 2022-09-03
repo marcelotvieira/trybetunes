@@ -9,7 +9,6 @@ import Profile from './pages/Profile';
 import ProfileEdit from './pages/ProfileEdit';
 import Search from './pages/Search';
 import Header from './components/Header';
-import './pages/global.css';
 
 class App extends React.Component {
   state = {

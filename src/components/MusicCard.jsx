@@ -12,6 +12,7 @@ export default class MusicCard extends Component {
 
   async componentDidMount() {
     const { track } = this.props;
+    console.log(track);
     this.setState({ isLoading: true });
     this.setState({ favoriteSongs: await getFavoriteSongs() }, () => {
       const { favoriteSongs } = this.state;
@@ -23,13 +24,14 @@ export default class MusicCard extends Component {
   }
 
   setFavorite = async (e) => {
-    const { track } = this.props;
+    const { track, updateFavorites } = this.props;
     const { checked: isFavorite } = e.target;
     this.setState({ isFavorite, isLoading: true });
     if (isFavorite) {
       await addSong(track);
       this.setState({ favoriteSongs: await getFavoriteSongs() });
     } else { await removeSong(track); }
+    if (updateFavorites) updateFavorites(await getFavoriteSongs());
     this.setState({ isLoading: false });
   };
 
@@ -37,12 +39,13 @@ export default class MusicCard extends Component {
     const { isLoading, isFavorite } = this.state;
     const { track: { trackId } } = this.props;
     const favoriteCheckBox = isLoading ? <Loading /> : (
-      <label htmlFor="favorite">
+      <label htmlFor="Favorita" aria-labelledby="Favorita">
         Favorita
         <input
+          id="Favorita"
           checked={ isFavorite }
           type="checkbox"
-          name="favorite"
+          name="Favorita"
           data-testid={ `checkbox-music-${trackId}` }
           onChange={ this.setFavorite }
         />
@@ -73,4 +76,8 @@ MusicCard.propTypes = {
     previewUrl: PropTypes.string.isRequired,
     trackId: PropTypes.number.isRequired,
   }).isRequired,
+  updateFavorites: PropTypes.func,
+};
+MusicCard.defaultProps = {
+  updateFavorites: undefined,
 };

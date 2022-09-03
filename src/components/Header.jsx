@@ -20,6 +20,7 @@ export default class Header extends Component {
       <header className="header-component" data-testid="header-component">
         {user.name !== '' ? <p data-testid="header-user-name">{ user.name }</p>
           : <Loading />}
+        <p className="copy">Developed By © | Marcelo Vieira </p>
         <ul className="menu">
           <li>
             <Link className="menu-link" to="/search" data-testid="link-to-search">
