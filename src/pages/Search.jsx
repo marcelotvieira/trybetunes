@@ -56,7 +56,7 @@ export default class Search extends Component {
 
     const content = searchResults.length > 0 ? (
       <div className="content">
-        <h3>
+        <h3 className="title-search">
           { `Resultado de álbuns de: ${searchedValue}` }
         </h3>
         <div className="albums">
@@ -67,18 +67,16 @@ export default class Search extends Component {
     if (searchLoading) return <Loading />;
 
     return (
-      <div data-testid="page-search">
+      <div data-testid="page-search" className="page-search">
         <form action="">
-          <label htmlFor="search">
-            <input
-              type="text"
-              name="search"
-              data-testid="search-artist-input"
-              placeholder="Name of Artist"
-              onChange={ this.setSearch }
-              value={ searchInput }
-            />
-          </label>
+          <input
+            type="text"
+            name="search"
+            data-testid="search-artist-input"
+            placeholder="Name of Artist"
+            onChange={ this.setSearch }
+            value={ searchInput }
+          />
           <button
             type="button"
             data-testid="search-artist-button"

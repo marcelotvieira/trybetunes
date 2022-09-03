@@ -52,7 +52,7 @@ export default class MusicCard extends Component {
     const { trackName, previewUrl } = track;
     return (
       <div className="track-card">
-        <div>
+        <div className="music-card-header">
           <h3>{ trackName }</h3>
           { favoriteCheckBox }
         </div>

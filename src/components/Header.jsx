@@ -17,22 +17,22 @@ export default class Header extends Component {
   render() {
     const { user } = this.state;
     return (
-      <header data-testid="header-component">
+      <header className="header-component" data-testid="header-component">
         {user.name !== '' ? <p data-testid="header-user-name">{ user.name }</p>
           : <Loading />}
         <ul className="menu">
           <li>
-            <Link to="/search" data-testid="link-to-search">
+            <Link className="menu-link" to="/search" data-testid="link-to-search">
               Search
             </Link>
           </li>
           <li>
-            <Link to="/favorites" data-testid="link-to-favorites">
+            <Link className="menu-link" to="/favorites" data-testid="link-to-favorites">
               Favorites
             </Link>
           </li>
           <li>
-            <Link to="/profile" data-testid="link-to-profile">
+            <Link className="menu-link" to="/profile" data-testid="link-to-profile">
               Profile
             </Link>
           </li>

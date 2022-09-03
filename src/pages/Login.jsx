@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { createUser } from '../services/userAPI';
+import logo from '../images/logo.png';
 
 export default class Login extends Component {
   state = {
@@ -33,11 +34,10 @@ export default class Login extends Component {
 
   render() {
     const { name, isButtonDisabled } = this.state;
-    const logo = 'https://cdn-icons-png.flaticon.com/512/167/167643.png?w=360';
     return (
-      <div data-testid="page-login">
-        <img className={ logo } src="" alt="" />
-        <form action="">
+      <div data-testid="page-login" className="page-login">
+        <img className="logo" src={ logo } alt="" />
+        <form className="login-form" action="">
           <input
             placeholder="Name..."
             type="text"

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import getMusics from '../services/musicsAPI';
 import MusicCard from '../components/MusicCard';
+import Loading from '../components/Loading';
 
 export default class Album extends Component {
   state = {
@@ -10,12 +11,14 @@ export default class Album extends Component {
     tracks: [],
     artistName: '',
     collectionName: '',
+    collectionArt: '',
+    isLoading: true,
   };
 
   async componentDidMount() {
     const { match } = this.props;
     const { id } = match.params;
-    await this.setState({ albumId: id });
+    await this.setState({ albumId: id, isLoading: true });
     this.fetchTracks();
   }
 
@@ -23,12 +26,17 @@ export default class Album extends Component {
     const { albumId } = this.state;
     const response = await getMusics(albumId);
     const [artist] = response;
-    const { artistName, collectionName } = artist;
-    this.setState({ tracks: response, artistName, collectionName });
+    const { artistName, collectionName, artworkUrl100 } = artist;
+    this.setState({ tracks: response,
+      artistName,
+      collectionName,
+      collectionArt: artworkUrl100,
+    });
+    this.setState({ isLoading: false });
   };
 
   render() {
-    const { tracks, artistName, collectionName } = this.state;
+    const { tracks, artistName, collectionName, collectionArt, isLoading } = this.state;
     const trackEls = tracks.map((track, index) => {
       if (index === 0) return null;
       return (
@@ -41,11 +49,18 @@ export default class Album extends Component {
     });
 
     return (
-      <div data-testid="page-album">
+      <div data-testid="page-album" className="page-album">
         <Header />
-        <h2 data-testid="artist-name">{ artistName }</h2>
-        <p data-testid="album-name">{ collectionName }</p>
-        { trackEls }
+        <div className="album-content">
+          <div className="collection-info">
+            { isLoading ? <Loading /> : <img src={ collectionArt } alt="" /> }
+            <h2 data-testid="artist-name">{ artistName }</h2>
+            <p data-testid="album-name">{ collectionName }</p>
+          </div>
+          <div className="collection-tracks">
+            { trackEls }
+          </div>
+        </div>
       </div>
     );
   }

@@ -9,13 +9,16 @@ export default class CardAlbum extends Component {
     return (
       <div className="album-card">
         <img src={ artworkUrl100 } alt="" />
-        <Link
-          to={ `/album/${collectionId}` }
-          data-testid={ `link-to-album-${collectionId}` }
-        >
-          <h3>{ collectionName }</h3>
-        </Link>
-        <p>{ artistName }</p>
+        <div className="track-info">
+          <Link
+            className="link-to"
+            to={ `/album/${collectionId}` }
+            data-testid={ `link-to-album-${collectionId}` }
+          >
+            <h3>{ collectionName }</h3>
+          </Link>
+          <p>{ artistName }</p>
+        </div>
       </div>
     );
   }
