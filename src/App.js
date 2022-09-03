@@ -9,6 +9,7 @@ import Profile from './pages/Profile';
 import ProfileEdit from './pages/ProfileEdit';
 import Search from './pages/Search';
 import Header from './components/Header';
+import './pages/global.css';
 
 class App extends React.Component {
   state = {
@@ -50,10 +51,7 @@ class App extends React.Component {
               <Header setLoading={ this.setLoading } />
               <Profile />
             </Route>
-            <Route exact path="/profile/edit">
-              <Header setLoading={ this.setLoading } />
-              <ProfileEdit />
-            </Route>
+            <Route exact path="/profile/edit" component={ ProfileEdit } />
             <Route path="*" component={ NotFound } />
           </Switch>
         </BrowserRouter>

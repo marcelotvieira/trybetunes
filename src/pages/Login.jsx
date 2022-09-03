@@ -49,7 +49,6 @@ export default class Login extends Component {
             disabled={ isButtonDisabled }
             type="button"
             data-testid="login-submit-button"
-            to="/search"
             onClick={ this.loginSubmit }
           >
             Entrar
