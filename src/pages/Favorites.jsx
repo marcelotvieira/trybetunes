@@ -26,6 +26,7 @@ export default class Favorites extends Component {
 
     const favoriteSongsEls = favoriteSongs.map((song) => (
       <MusicCard
+        favPreview
         updateFavorites={ this.updateFavorites }
         key={ song.trackId }
         track={ song }

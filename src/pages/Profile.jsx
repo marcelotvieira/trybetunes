@@ -25,10 +25,15 @@ export default class Profile extends Component {
     const { user, isLoading } = this.state;
     if (isLoading) return <Loading />;
     return (
-      <div data-testid="page-profile">
+      <div className="page-profile" data-testid="page-profile">
         <div className="profile-left">
           <img src={ user.image } data-testid="profile-image" alt="" />
-          <h3>{ user.name }</h3>
+          <div className="profile-header">
+            <h3>{ user.name }</h3>
+            <Link to="/profile/edit" className="edit-button">
+              Editar perfil
+            </Link>
+          </div>
         </div>
         <div className="profile-right">
           <label htmlFor="mail">
@@ -44,9 +49,6 @@ export default class Profile extends Component {
             </p>
           </label>
         </div>
-        <Link to="/profile/edit">
-          Editar perfil
-        </Link>
       </div>
     );
   }

@@ -37,7 +37,7 @@ export default class MusicCard extends Component {
 
   render() {
     const { isLoading, isFavorite } = this.state;
-    const { track: { trackId } } = this.props;
+    const { track: { trackId, artworkUrl100 }, favPreview } = this.props;
     const favoriteCheckBox = isLoading ? <Loading /> : (
       <label htmlFor="Favorita" aria-labelledby="Favorita">
         Favorita
@@ -59,12 +59,16 @@ export default class MusicCard extends Component {
           <h3>{ trackName }</h3>
           { favoriteCheckBox }
         </div>
-        <audio data-testid="audio-component" src={ previewUrl } controls>
-          <track kind="captions" />
-          O seu navegador não suporta o elemento
-          {' '}
-          <code>audio</code>
-        </audio>
+        <div className="song">
+          { favPreview
+          && <img src={ artworkUrl100 } alt="" className="collection-art" /> }
+          <audio data-testid="audio-component" src={ previewUrl } controls>
+            <track kind="captions" />
+            O seu navegador não suporta o elemento
+            {' '}
+            <code>audio</code>
+          </audio>
+        </div>
       </div>
     );
   }
@@ -75,9 +79,12 @@ MusicCard.propTypes = {
     trackName: PropTypes.string.isRequired,
     previewUrl: PropTypes.string.isRequired,
     trackId: PropTypes.number.isRequired,
+    artworkUrl100: PropTypes.string.isRequired,
   }).isRequired,
+  favPreview: PropTypes.bool,
   updateFavorites: PropTypes.func,
 };
 MusicCard.defaultProps = {
   updateFavorites: undefined,
+  favPreview: false,
 };

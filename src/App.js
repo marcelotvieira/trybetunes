@@ -50,7 +50,10 @@ class App extends React.Component {
               <Header setLoading={ this.setLoading } />
               <Profile />
             </Route>
-            <Route exact path="/profile/edit" component={ ProfileEdit } />
+            <Route exact path="/profile/edit">
+              <Header />
+              <ProfileEdit />
+            </Route>
             <Route path="*" component={ NotFound } />
           </Switch>
         </BrowserRouter>
