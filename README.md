@@ -1,13 +1,38 @@
-# :construction: README customizado em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto no qual você pode customizar e reutilizar todas as vezes que for executar o trybe-publisher.
 
-Para deixá-lo com a sua cara, basta alterar o seguinte arquivo da sua máquina: ~/.student-repo-publisher/custom/_NEW_README.md
+# Projeto TrybeTunes
 
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+### Este projeto foi construído com caráter reprobatório na escola Trybe
+
+O Projeto foi o terceiro abordando React. Ja havíamos passado por todo o fundamento em JavaScript. Desenvolvi toda parte referente ao React, com base nos testes escritos pela escola.
+
+
+A aplicação se trata de um mini Player de música, para reproduzir faixas em versão demo, consumidas de uma API externa.
+
+
+
+# Instruções de uso.
+## Rodando localmente
+
+Clone o projeto
+
+```bash
+  git clone https://github.com/marcelotvieira/trybetunes
+```
+
+Entre no diretório do projeto
+
+```bash
+  cd my-project
+```
+
+Instale as dependências
+
+```bash
+  npm install
+```
+
+Inicie o servidor
+
+```bash
+  npm start
+```
